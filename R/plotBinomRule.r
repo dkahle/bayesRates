@@ -1,6 +1,6 @@
-#' Plot a decision rule
+#' Plot a binomial decision rule
 #'
-#' Plot a decision rule
+#' Plot a binomial decision rule
 #' 
 #' @param n  number of trials (the same for both samples)
 #' @param a1 alpha, the hyperparameter of the beta distribution of the first poisson rate
@@ -19,25 +19,25 @@
 #' @param geom ggplot2 geom used
 #' @return a ggplot object
 #' @author David Kahle \email{david.kahle@@gmail.com}
-#' @export plot_binom_rule
+#' @export plotBinomRule
 #' @examples
 #' 
 #' \dontrun{
 #'	
-#' plot_binom_rule(30, 1, 1, 1, 1)
-#' plot_binom_rule(100, 1, 1, 1, 1)
-#' plot_binom_rule(30, 1, 1, 1, 1, sizeby = "null")
-#' plot_binom_rule(30, 1, 1, 1, 1, sizeby = "alt") # uniform
+#' plotBinomRule(30, 1, 1, 1, 1)
+#' plotBinomRule(100, 1, 1, 1, 1)
+#' plotBinomRule(30, 1, 1, 1, 1, sizeby = "null")
+#' plotBinomRule(30, 1, 1, 1, 1, sizeby = "alt") # uniform
 #' 
-#' plot_binom_rule(30, 3, 7, 7, 3)
-#' plot_binom_rule(100, 3, 7, 7, 3)
+#' plotBinomRule(30, 3, 7, 7, 3)
+#' plotBinomRule(100, 3, 7, 7, 3)
 #'
-#' plot_binom_rule(30, 3, 7, 7, 3, sizeby = "null") + theme_bw()
-#' plot_binom_rule(30, 3, 7, 7, 3, sizeby = "alt") + theme_bw()
+#' plotBinomRule(30, 3, 7, 7, 3, sizeby = "null") + theme_bw()
+#' plotBinomRule(30, 3, 7, 7, 3, sizeby = "alt") + theme_bw()
 #'
 #' }
 #' 
-plot_binom_rule <- function(n, a1, b1, a2, b2, 
+plotBinomRule <- function(n, a1, b1, a2, b2, 
   a = a1, b = b1, pi0 = .5, pi1 = 1 - pi0, c1 = 1, c2 = 1, c = c1/c2, rule = pi1/pi0 * c2/c1,
   sizeby = c("none", "null", "alt"), geom = c("auto", "point", "tile"))
 {
