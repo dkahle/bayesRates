@@ -12,22 +12,22 @@
 #' @param pi0 the prior probability of the null hypothesis
 #' @param pi1 the prior probability of the alternative hypothesis
 #' @param ylim y limits
-#' @param method method argument to pass to \code{\link{sample_power_est}}
-#' @seealso \code{\link{sample_power_est}}
-#' @export power_plot
+#' @param method method argument to pass to \code{\link{samplePowerEst}}
+#' @seealso \code{\link{samplePowerEst}}
+#' @export powerPlot
 #' @examples
 #' \dontrun{
 #' 
 #' a1 <- 2; b1 <- 6
 #' a2 <- 3; b2 <- 3
-#' power_plot(t = c(0,1000), a1, b1, a2, b2)
-#' power_plot(t = c(0,100), a1, b1, a2, b2)
-#' power_plot(t = 0:100, a1, b1, a2, b2, method = 'exact')
+#' powerPlot(t = c(0,1000), a1, b1, a2, b2)
+#' powerPlot(t = c(0,100), a1, b1, a2, b2)
+#' powerPlot(t = 0:100, a1, b1, a2, b2, method = 'exact')
 #' # this last plot shows that the approximation is not quite exact for small values
 #' # but decent for larger ones
 #'
 #' # styling, all ggplot2 styling works
-#' power_plot(t = c(0,1000), a1, b1, a2, b2) +
+#' powerPlot(t = c(0,1000), a1, b1, a2, b2) +
 #'   theme_bw() + opts(title = 'My Power Plot')
 #' 
 #' 
@@ -35,16 +35,16 @@
 #' 
 #' a1 <- 4; b1 <- 2
 #' a2 <- 6; b2 <- 2
-#' power_plot(t = c(0,1000), a1, b1, a2, b2)
-#' power_plot(t = c(0,25), a1, b1, a2, b2)
-#' power_plot(t = 0:25, a1, b1, a2, b2, method = 'exact')
+#' powerPlot(t = c(0,1000), a1, b1, a2, b2)
+#' powerPlot(t = c(0,25), a1, b1, a2, b2)
+#' powerPlot(t = 0:25, a1, b1, a2, b2, method = 'exact')
 #' 
 #' 
 #' 
 #' 
 #' a1 <- c(2,4); b1 <- c(6,2);
 #' a2 <- c(3,6); b2 <- c(3,2);
-#' power_plot(t = c(0,1000), a1, b1, a2, b2)
+#' powerPlot(t = c(0,1000), a1, b1, a2, b2)
 #'
 #' library(ggplot2)
 #' last_plot() + theme_bw()
@@ -53,7 +53,7 @@
 #' 
 #' 
 #'  }
-power_plot <- function(t_range, a1, b1, a2, b2, 
+powerPlot <- function(t_range, a1, b1, a2, b2, 
   a = a1, b = b1, pi0 = .5, pi1 = 1 - pi0, ylim = 0:1, method = 'fastest')
 {   
   est_power <- NULL; rm(est_power);
@@ -67,7 +67,7 @@ power_plot <- function(t_range, a1, b1, a2, b2,
     xlim <- pmax(extendrange(t_range), 0)  
     x <- seq(xlim[1], xlim[2], length.out = 501)
   
-    # approximate with sample_power_est (log)
+    # approximate with samplePowerEst (log)
     df <- NULL
   
     for(k in seq_along(a1)){
@@ -77,7 +77,7 @@ power_plot <- function(t_range, a1, b1, a2, b2,
       )
   	
       df_tmp <- data.frame(
-        sample_power_est(x, a1 = a1[k], b1 = b1[k], a2 = a2[k], 
+        samplePowerEst(x, a1 = a1[k], b1 = b1[k], a2 = a2[k], 
           b2 = b2[k], a = a[k], b = b[k], pi0 = pi0, pi1 = pi1, 
           method = method),
         id = id
