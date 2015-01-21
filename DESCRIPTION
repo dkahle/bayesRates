@@ -1,0 +1,22 @@
+Package: bayesRates
+Version: 1.0
+Title: Two-Sample Tests and Sample Size Determination from a Bayesian Perspective
+Description: bayesRates allows you to calculate the sample size required for
+    two-sample tests of binomial proportions and Poisson rates with given 
+    operating characteristics.
+URL: https://github.com/dkahle/bayesRates
+BugReports: https://github.com/dkahle/bayesRates/issues
+Authors@R: as.person(c(
+    "David Kahle <david.kahle@gmail.com> [aut, cre]",
+    "Ryan Sides <rsides17@yahoo.com> [aut]",
+    "James Stamey <james_stamey@baylor.edu [aut]"
+    ))
+Depends:
+    R (>= 2.15.0),
+    ggplot2 (>= 0.9.0)
+LinkingTo: Rcpp
+Imports:
+    reshape2,
+    plyr,
+    Rcpp
+License: GPL-2
