@@ -44,6 +44,8 @@ t <- (px-py)/sqrt(pp*(1-pp)/nx + pp*(1-pp)/ny)
 #> [1] 0.1024704
 ```
 
+Note that this procedure would not reject at the 10% level.
+
 `binom.test()` is similar, but uses the exact different procedure. **bayesRates** offers another test of the same hypothesis with more of a Bayesian flavor, `bayesBinomTest()`. In this function, the user begins by specifying probabilites ([beliefs](http://en.wikipedia.org/wiki/Bayesian_probability#Objective_and_subjective_Bayesian_probabilities)) on the null and alternative hypotheses, typically `1/2` and `1/2` from the [principle of insufficient reason](http://en.wikipedia.org/wiki/Principle_of_indifference#History_of_the_principle_of_indifference).
 
 ``` r
@@ -65,6 +67,37 @@ plotBeta(c(10,2),c(10,1))
 ```
 
 ![](README-unnamed-chunk-7-1.png)
+
+At this point, we're ready for `bayesBinomTest()`:
+
+``` r
+bayesBinomTest(x = c(26, 34), n = 50,  
+  a1 = 10, b1 = 10,
+  a2 =  2, b2 = 1
+)
+#> 
+#>  2-sample test for equality of proportions with prior information
+#> 
+#> data:  c(26, 34) out of c(50, 50)
+#> Bayes factor = 0.6643
+#> Hypotheses priors:
+#> P(H0) P(H1) 
+#>   0.5   0.5 
+#> Prior odds:
+#> [1] 1
+#> Prior hyper-parameters:
+#>       alpha beta
+#> null     10   10
+#> alt 1    10   10
+#> alt 2     2    1
+#> Sample estimates:
+#>    prop 1    prop 2 
+#> 0.5142857 0.6792453 
+#> Posterior odds:
+#> [1] 0.6642844
+#> Bayes rule critical value = 1
+#> Conclusion : Reject null hypothesis of proportion equivalence
+```
 
 Installation
 ------------
