@@ -58,6 +58,14 @@ plotBeta(10, 10)
 
 ![](README-unnamed-chunk-6-1.png)
 
+Now operate under the assumption that they are different. In that case, what are the beliefs about the two? One way to think about this is to think about them one at a time. If we think that they are the same, and that the quarter is fair (represented by the Beta(10,10)), then we can assume they are both like that. If we think they are different, we may still think that the quarter is fair (Beta(10,10)), so we only need to choose the distribution of the half-dollar. Perhaps that distribution is well-represented by a Beta(2,1) distribution. The two distributions can be visualized together using `plotBeta()`:
+
+``` r
+plotBeta(c(10,2),c(10,1))
+```
+
+![](README-unnamed-chunk-7-1.png)
+
 Installation
 ------------
 
