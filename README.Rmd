@@ -11,7 +11,9 @@ output:
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "README-",
+  fig.height = 2,
+  fig.width = 5
 )
 ```
 
