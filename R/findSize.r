@@ -24,6 +24,7 @@
 #' 	
 #' a1 <- 2; b1 <- 6
 #' a2 <- 3; b2 <- 3
+#' plotGamma(c(a1, a2), c(b1, b2))
 #' findSize(power = .8, a1, b1, a2, b2, family = "poisson")
 #' 
 #' a1 <- 5; b1 <- .2 # E = 1
@@ -147,10 +148,7 @@ findSize <- function(power, a1, b1, a2, b2,
     
     return(list(size = last(t), power = last(p)))
   }
-  
-  
-  
-  
+
   
 }
 
