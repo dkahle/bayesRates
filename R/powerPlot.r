@@ -117,7 +117,7 @@ powerPlot <- function(t_range, a1, b1, a2, b2,
     # t range is already provided
     df <- data.frame(
       t = t,
-      power = sample_power(t, a1, b1, a2, b2, a, b, pi0, pi1)
+      power = samplePower(t, a1, b1, a2, b2, a, b, pi0, pi1)
     )
     
     

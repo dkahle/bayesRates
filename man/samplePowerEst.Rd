@@ -136,6 +136,6 @@ subset(tdf, n == 500)
 }
 }
 \seealso{
-\code{\link{samplePower}}, \code{\link{find_size}}
+\code{\link{samplePower}}, \code{\link{findSize}}
 }
 

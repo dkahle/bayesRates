@@ -52,6 +52,6 @@ samplePowerPoisson(t = 10, a1, b1, a2, b2)
 }
 }
 \seealso{
-\code{\link{samplePower}}, \code{\link{samplePowerEst}}, \code{\link{find_size}}
+\code{\link{samplePower}}, \code{\link{samplePowerEst}}, \code{\link{findSize}}
 }
 

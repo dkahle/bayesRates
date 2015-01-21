@@ -13,7 +13,7 @@
 #' @param pi1 the prior probability of the alternative hypothesis
 #' @param method "fastest", "fast", "moderate", decreasing in speed and increasing in accuracy
 #' @param family "binomial" or "poisson"
-#' @seealso \code{\link{samplePower}}, \code{\link{find_size}}
+#' @seealso \code{\link{samplePower}}, \code{\link{findSize}}
 #' @export
 #' @examples
 #' \dontrun{

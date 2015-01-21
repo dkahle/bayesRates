@@ -16,16 +16,16 @@
 #' @param c2 loss associated with type I error
 #' @param c relative loss constant (loss due to type II error divided by loss due to type I error)
 #' @param rule the decision rule for the Bayes factor B.  by default, test rejects when B < pi1/pi0 * c2/c1
-#' @seealso \code{\link{sample_power}}, \code{\link{sample_power_est}}, \code{\link{find_size}}, \code{\link{plot_binom_rule}}
-#' @export bayes_binom_test
+#' @seealso \code{\link{samplePower}}, \code{\link{samplePowerEst}}, \code{\link{findSize}}, \code{\link{plotBinomRule}}
+#' @export bayesBinomTest
 #' @examples
 #' \dontrun{
 #' 
 #' a1 <- 3/5; b1 <- 7/5
 #' a2 <- 7/5; b2 <- 3/5
 #' plot_beta(c(a1, a2), c(b1, b2))
-#' bayes_binom_test(c(12, 16), 20, a1, b1, a2, b2) # reject
-#' bayes_binom_test(c(13, 16), 20, a1, b1, a2, b2) # fail to reject
+#' bayesBinomTest(c(12, 16), 20, a1, b1, a2, b2) # reject
+#' bayesBinomTest(c(13, 16), 20, a1, b1, a2, b2) # fail to reject
 #'
 #' # compare to :
 #' prop.test(c(9, 16), c(20, 20)) # almost exact reject at 5% level
@@ -38,15 +38,15 @@
 #' a1 <- 3; b1 <- 7
 #' a2 <- 7; b2 <- 3
 #' plot_beta(c(a1, a2), c(b1, b2))
-#' bayes_binom_test(c(12, 16), 20, a1, b1, a2, b2) # reject
-#' bayes_binom_test(c(13, 16), 20, a1, b1, a2, b2) # reject
-#' bayes_binom_test(c(16, 16), 20, a1, b1, a2, b2) # reject (!)
-#' bayes_binom_test(c(17, 16), 20, a1, b1, a2, b2) # reject (!)
-#' bayes_binom_test(c(18, 16), 20, a1, b1, a2, b2) # fail to reject (!)
+#' bayesBinomTest(c(12, 16), 20, a1, b1, a2, b2) # reject
+#' bayesBinomTest(c(13, 16), 20, a1, b1, a2, b2) # reject
+#' bayesBinomTest(c(16, 16), 20, a1, b1, a2, b2) # reject (!)
+#' bayesBinomTest(c(17, 16), 20, a1, b1, a2, b2) # reject (!)
+#' bayesBinomTest(c(18, 16), 20, a1, b1, a2, b2) # fail to reject (!)
 #' 
 #' 
 #' }
-bayes_binom_test <- function(x, n, a1, b1, a2, b2, 
+bayesBinomTest <- function(x, n, a1, b1, a2, b2, 
   a = a1, b = b1, pi0 = .5, pi1 = 1 - pi0, c1 = 1, c2 = 1, c = c1/c2, rule = pi1/pi0 * c2/c1)
 {
   
@@ -205,23 +205,23 @@ dbetabinom <- function(x, size, alpha, beta, log = FALSE){
 #' @param pi1 the prior probability of the alternative hypothesis
 #' @param c relative loss constant (loss due to type II error divided by loss due to type I error)
 #' @param rule the decision rule for the Bayes factor B.  by default, test rejects when B < pi1/pi0 * c2/c1
-#' @seealso \code{\link{sample_power}}, \code{\link{sample_power_est}}, \code{\link{find_size}}
-#' @export bayes_pois_test
+#' @seealso \code{\link{samplePower}}, \code{\link{samplePowerEst}}, \code{\link{findSize}}
+#' @export bayesPoisTest
 #' @examples
 #' \dontrun{
 #' 
 #' a1 <- 5; b1 <- .2 # E = 1
 #' a2 <- 30; b2 <- .167 # E = 5
 #' plot_gamma(c(a1, a2), c(b1, b2))
-#' bayes_pois_test(c(18, 105), 20, a1, b1, a2, b2)
-#' bayes_pois_test(c(18, 165), 20, a1, b1, a2, b2)
+#' bayesPoisTest(c(18, 105), 20, a1, b1, a2, b2)
+#' bayesPoisTest(c(18, 165), 20, a1, b1, a2, b2)
 #'
 #' # compare to :
 #' prop.test(c(10, 16), c(20, 20))
 #' 
 #' 
 #'  }
-bayes_pois_test <- function(x, t, a1, b1, a2, b2, 
+bayesPoisTest <- function(x, t, a1, b1, a2, b2, 
   a = a1, b = b1, pi0 = .5, pi1 = 1 - pi0, c = 1, rule = c*pi1/pi0)
 {
   
@@ -320,7 +320,7 @@ bayes_pois_test <- function(x, t, a1, b1, a2, b2,
 #' @export
 #' @examples
 #' \dontrun{
-#'   bayes_binom_test(11:12, 20, 1, 1, 1, 1)
+#'   bayesBinomTest(11:12, 20, 1, 1, 1, 1)
 #' }
 #' 
 print.btest <- function (x, digits = 4L, ...){

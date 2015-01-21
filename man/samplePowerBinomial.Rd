@@ -40,6 +40,6 @@ Compute the power of the binomial proportions test for a given sample size (n) w
 }
 }
 \seealso{
-\code{\link{samplePower}}, \code{\link{samplePowerEst}}, \code{\link{find_size}}
+\code{\link{samplePower}}, \code{\link{samplePowerEst}}, \code{\link{findSize}}
 }
 

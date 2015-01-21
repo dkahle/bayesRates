@@ -60,7 +60,7 @@ plotBinomRule <- function(n, a1, b1, a2, b2,
   
   df <- expand.grid(y1 = 0:n, y2 = 0:n)
   df$action <- apply(df, 1, function(x) 
-    bayes_binom_test(x, n, a1, b1, a2, b2, a, b, pi0, pi1, c1, c2, c, rule)$reject
+    bayesBinomTest(x, n, a1, b1, a2, b2, a, b, pi0, pi1, c1, c2, c, rule)$reject
   )
   
   df$action[df$action == TRUE] <- "Reject"

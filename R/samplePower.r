@@ -13,7 +13,7 @@
 #' @param pi1 the prior probability of the alternative hypothesis
 #' @param c relative loss constant (loss due to type II error divided by loss due to type I error)
 #' @param family "binomial" or "poisson", depending on test
-#' @seealso \code{\link{samplePowerBinomial}}, \code{\link{samplePowerPoisson}}, \code{\link{samplePowerEst}}, \code{\link{find_size}}
+#' @seealso \code{\link{samplePowerBinomial}}, \code{\link{samplePowerPoisson}}, \code{\link{samplePowerEst}}, \code{\link{findSize}}
 #' @export samplePower
 #' @examples
 #' \dontrun{
@@ -182,7 +182,7 @@ samplePower <- function(n, a1, b1, a2, b2,
 #' @param pi0 the prior probability of the null hypothesis
 #' @param pi1 the prior probability of the alternative hypothesis
 #' @param c relative loss constant (loss due to type II error divided by loss due to type I error)
-#' @seealso \code{\link{samplePower}}, \code{\link{samplePowerEst}}, \code{\link{find_size}}
+#' @seealso \code{\link{samplePower}}, \code{\link{samplePowerEst}}, \code{\link{findSize}}
 #' @export samplePowerBinomial
 #' @examples
 #' \dontrun{
@@ -273,7 +273,7 @@ samplePowerBinomial <- function(n, a1, b1, a2, b2,
 #' @param pi0 the prior probability of the null hypothesis
 #' @param pi1 the prior probability of the alternative hypothesis
 #' @param c relative loss constant (loss due to type II error divided by loss due to type I error)
-#' @seealso \code{\link{samplePower}}, \code{\link{samplePowerEst}}, \code{\link{find_size}}
+#' @seealso \code{\link{samplePower}}, \code{\link{samplePowerEst}}, \code{\link{findSize}}
 #' @export samplePowerPoisson
 #' @examples
 #' \dontrun{

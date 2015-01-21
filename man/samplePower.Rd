@@ -118,6 +118,6 @@ samplePower(n = 20, a1, b1, a2, b2, family = "poisson")
 }
 }
 \seealso{
-\code{\link{samplePowerBinomial}}, \code{\link{samplePowerPoisson}}, \code{\link{samplePowerEst}}, \code{\link{find_size}}
+\code{\link{samplePowerBinomial}}, \code{\link{samplePowerPoisson}}, \code{\link{samplePowerEst}}, \code{\link{findSize}}
 }
 

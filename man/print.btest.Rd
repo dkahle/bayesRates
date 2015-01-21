@@ -21,7 +21,7 @@ Print a Bayesian test
 }
 \examples{
 \dontrun{
-  bayes_binom_test(11:12, 20, 1, 1, 1, 1)
+  bayesBinomTest(11:12, 20, 1, 1, 1, 1)
 }
 }
 
