@@ -12,17 +12,19 @@ bayesBinomTest(x, n, a1, b1, a2, b2, a = a1, b = b1, pi0 = 0.5, pi1 = 1
 
 \item{n}{number of trials (the same for both samples)}
 
-\item{a1}{alpha, the hyperparameter of the beta distribution of the first poisson rate}
+\item{a1}{alpha, the hyperparameter of the beta distribution of the first proportion}
 
-\item{b1}{beta, the hyperparameter of the beta distribution of the first poisson rate}
+\item{b1}{beta, the hyperparameter of the beta distribution of the first proportion}
 
-\item{a2}{alpha, the hyperparameter of the beta distribution of the second poisson rate}
+\item{a2}{alpha, the hyperparameter of the beta distribution of the second proportion}
 
-\item{b2}{beta, the hyperparameter of the beta distribution of the second poisson rate}
+\item{b2}{beta, the hyperparameter of the beta distribution of the second proportion}
 
-\item{a}{alpha, the hyperparameter of the beta distribution under the null}
+\item{a}{alpha, the hyperparameter of the beta distribution under the null
+this is defaulted to a1 when not specified}
 
-\item{b}{beta, the hyperparameter of the beta distribution under the null}
+\item{b}{beta, the hyperparameter of the beta distribution under the null
+this is defaulted to b1 when not specified}
 
 \item{pi0}{the prior probability of the null hypothesis}
 
@@ -30,7 +32,7 @@ bayesBinomTest(x, n, a1, b1, a2, b2, a = a1, b = b1, pi0 = 0.5, pi1 = 1
 
 \item{c1}{loss associated with type I error}
 
-\item{c2}{loss associated with type I error}
+\item{c2}{loss associated with type II error}
 
 \item{c}{relative loss constant (loss due to type II error divided by loss due to type I error)}
 
@@ -44,7 +46,7 @@ Bayesian two-sample test of proportions
 
 a1 <- 3/5; b1 <- 7/5
 a2 <- 7/5; b2 <- 3/5
-plot_beta(c(a1, a2), c(b1, b2))
+plotBeta(c(a1, a2), c(b1, b2))
 bayesBinomTest(c(12, 16), 20, a1, b1, a2, b2) # reject
 bayesBinomTest(c(13, 16), 20, a1, b1, a2, b2) # fail to reject
 
@@ -58,7 +60,7 @@ prop.test(c(11, 16), c(20, 20)) # fail to reject
 # watch the proportions to see why
 a1 <- 3; b1 <- 7
 a2 <- 7; b2 <- 3
-plot_beta(c(a1, a2), c(b1, b2))
+plotBeta(c(a1, a2), c(b1, b2))
 bayesBinomTest(c(12, 16), 20, a1, b1, a2, b2) # reject
 bayesBinomTest(c(13, 16), 20, a1, b1, a2, b2) # reject
 bayesBinomTest(c(16, 16), 20, a1, b1, a2, b2) # reject (!)

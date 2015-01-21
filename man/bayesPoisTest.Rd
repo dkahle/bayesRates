@@ -40,7 +40,7 @@ Bayesian two-sample test of Poisson rates
 
 a1 <- 5; b1 <- .2 # E = 1
 a2 <- 30; b2 <- .167 # E = 5
-plot_gamma(c(a1, a2), c(b1, b2))
+plotGamma(c(a1, a2), c(b1, b2))
 bayesPoisTest(c(18, 105), 20, a1, b1, a2, b2)
 bayesPoisTest(c(18, 165), 20, a1, b1, a2, b2)
 

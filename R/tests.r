@@ -4,16 +4,18 @@
 #' 
 #' @param x  two-vector containing successful trials
 #' @param n  number of trials (the same for both samples)
-#' @param a1 alpha, the hyperparameter of the beta distribution of the first poisson rate
-#' @param b1 beta, the hyperparameter of the beta distribution of the first poisson rate
-#' @param a2 alpha, the hyperparameter of the beta distribution of the second poisson rate
-#' @param b2 beta, the hyperparameter of the beta distribution of the second poisson rate
+#' @param a1 alpha, the hyperparameter of the beta distribution of the first proportion
+#' @param b1 beta, the hyperparameter of the beta distribution of the first proportion
+#' @param a2 alpha, the hyperparameter of the beta distribution of the second proportion
+#' @param b2 beta, the hyperparameter of the beta distribution of the second proportion
 #' @param a alpha, the hyperparameter of the beta distribution under the null
+#'   this is defaulted to a1 when not specified
 #' @param b beta, the hyperparameter of the beta distribution under the null
+#'   this is defaulted to b1 when not specified
 #' @param pi0 the prior probability of the null hypothesis
 #' @param pi1 the prior probability of the alternative hypothesis
 #' @param c1 loss associated with type I error
-#' @param c2 loss associated with type I error
+#' @param c2 loss associated with type II error
 #' @param c relative loss constant (loss due to type II error divided by loss due to type I error)
 #' @param rule the decision rule for the Bayes factor B.  by default, test rejects when B < pi1/pi0 * c2/c1
 #' @seealso \code{\link{samplePower}}, \code{\link{samplePowerEst}}, \code{\link{findSize}}, \code{\link{plotBinomRule}}
@@ -23,7 +25,7 @@
 #' 
 #' a1 <- 3/5; b1 <- 7/5
 #' a2 <- 7/5; b2 <- 3/5
-#' plot_beta(c(a1, a2), c(b1, b2))
+#' plotBeta(c(a1, a2), c(b1, b2))
 #' bayesBinomTest(c(12, 16), 20, a1, b1, a2, b2) # reject
 #' bayesBinomTest(c(13, 16), 20, a1, b1, a2, b2) # fail to reject
 #'
@@ -37,7 +39,7 @@
 #' # watch the proportions to see why
 #' a1 <- 3; b1 <- 7
 #' a2 <- 7; b2 <- 3
-#' plot_beta(c(a1, a2), c(b1, b2))
+#' plotBeta(c(a1, a2), c(b1, b2))
 #' bayesBinomTest(c(12, 16), 20, a1, b1, a2, b2) # reject
 #' bayesBinomTest(c(13, 16), 20, a1, b1, a2, b2) # reject
 #' bayesBinomTest(c(16, 16), 20, a1, b1, a2, b2) # reject (!)
@@ -212,7 +214,7 @@ dbetabinom <- function(x, size, alpha, beta, log = FALSE){
 #' 
 #' a1 <- 5; b1 <- .2 # E = 1
 #' a2 <- 30; b2 <- .167 # E = 5
-#' plot_gamma(c(a1, a2), c(b1, b2))
+#' plotGamma(c(a1, a2), c(b1, b2))
 #' bayesPoisTest(c(18, 105), 20, a1, b1, a2, b2)
 #' bayesPoisTest(c(18, 165), 20, a1, b1, a2, b2)
 #'
