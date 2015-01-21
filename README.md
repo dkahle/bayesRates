@@ -46,11 +46,7 @@ t <- (px-py)/sqrt(pp*(1-pp)/nx + pp*(1-pp)/ny)
 
 Note that this procedure would not reject at the 10% level.
 
-`binom.test()` is similar, but uses the exact different procedure. **bayesRates** offers another test of the same hypothesis with more of a Bayesian flavor, `bayesBinomTest()`. In this function, the user begins by specifying probabilites ([beliefs](http://en.wikipedia.org/wiki/Bayesian_probability#Objective_and_subjective_Bayesian_probabilities)) on the null and alternative hypotheses, typically `1/2` and `1/2` from the [principle of insufficient reason](http://en.wikipedia.org/wiki/Principle_of_indifference#History_of_the_principle_of_indifference).
-
-``` r
-pH0 <- 1/2; pH1 <- 1/2
-```
+`binom.test()` is similar, but uses the exact different procedure. **bayesRates** offers another test of the same hypothesis with more of a Bayesian flavor, `bayesBinomTest()`. In this function, the user begins by specifying probabilites ([beliefs](http://en.wikipedia.org/wiki/Bayesian_probability#Objective_and_subjective_Bayesian_probabilities)) on the null and alternative hypotheses, typically `1/2` and `1/2` from the [principle of insufficient reason](http://en.wikipedia.org/wiki/Principle_of_indifference#History_of_the_principle_of_indifference). This is the default of `bayesBinomTest()`, but can be changed with the `pi0` and `pi1` arguments.
 
 The user then specifies probability distributions on the parameters under each of the hypotheses. Under the null hypothesis, the proportions are the same quantity, and so only a single (univariate) distribution need be specified. Since [beta distributions](http://en.wikipedia.org/wiki/Beta_distribution) are well suited to this task, they are assumed in **bayesRates**, so the user only needs to specify the parameters of the beta distribution. This is facilitated with the `plotBeta()` function, which takes in the two parameters and simply plots the ensuing beta distribution. Assuming the two coins flip heads at the same rate, it is reasonable to assume that that rate is around 50%, so that a Beta(10, 10) might be reasonable:
 
@@ -58,7 +54,7 @@ The user then specifies probability distributions on the parameters under each o
 plotBeta(10, 10)
 ```
 
-![](README-unnamed-chunk-6-1.png)
+![](README-unnamed-chunk-5-1.png)
 
 Now operate under the assumption that they are different. In that case, what are the beliefs about the two? One way to think about this is to think about them one at a time. If we think that they are the same, and that the quarter is fair (represented by the Beta(10,10)), then we can assume they are both like that. If we think they are different, we may still think that the quarter is fair (Beta(10,10)), so we only need to choose the distribution of the half-dollar. Perhaps that distribution is well-represented by a Beta(2,1) distribution. The two distributions can be visualized together using `plotBeta()`:
 
@@ -66,7 +62,7 @@ Now operate under the assumption that they are different. In that case, what are
 plotBeta(c(10,2),c(10,1))
 ```
 
-![](README-unnamed-chunk-7-1.png)
+![](README-unnamed-chunk-6-1.png)
 
 At this point, we're ready for `bayesBinomTest()`:
 
@@ -98,6 +94,8 @@ bayesBinomTest(x = c(26, 34), n = 50,
 #> Bayes rule critical value = 1
 #> Conclusion : Reject null hypothesis of proportion equivalence
 ```
+
+The conclusion reached is that of the optimal decision rule assuming that [Type I and Type II errors](http://en.wikipedia.org/wiki/Type_I_and_type_II_errors) are equally bad; this result can be found in [Zhao et al. (2011)](http://link.springer.com/article/10.1007/s11424-011-8250-x#page-1).
 
 Installation
 ------------
