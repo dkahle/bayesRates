@@ -13,8 +13,8 @@
 #' @param pi1 the prior probability of the alternative hypothesis
 #' @param c relative loss constant (loss due to type II error divided by loss due to type I error)
 #' @param family "binomial" or "poisson", depending on test
-#' @seealso \code{\link{sample_alpha_binomial}}, \code{\link{sample_alpha_poisson}}, \code{\link{find_size}}
-#' @export sample_alpha
+#' @seealso \code{\link{sampleAlphaBinomial}}, \code{\link{sampleAlphaPoisson}}, \code{\link{findSize}}
+#' @export sampleAlpha
 #' @examples
 #' \dontrun{
 #' 
@@ -37,8 +37,8 @@
 #' )
 #' test <- function(x) bayes_binom_test(x, n, a1, b1, a2, b2)$reject
 #' mean( apply(data, 1, test) ) # .061832 at 1E6
-#' sample_alpha_ryan("binomial", n, 1, a1, b1) # .0204
-#' sample_alpha(n, a1, b1, a2, b2) 
+#' sampleAlpha_ryan("binomial", n, 1, a1, b1) # .0204
+#' sampleAlpha(n, a1, b1, a2, b2) 
 #' 
 #' 
 #' 
@@ -50,7 +50,7 @@
 #' f <- function(x) bayes_binom_test(x, n, a1, b1, a2, b2)$reject
 #' f(c(11, 8))
 #' mean( apply(data, 1, f) )
-#' sample_alpha(n, a1, b1, a2, b2) 
+#' sampleAlpha(n, a1, b1, a2, b2) 
 #' 
 #' 
 #' 
@@ -125,7 +125,7 @@
 #' 
 #'
 #' }
-sample_alpha <- function(n, a1, b1, a2, b2, 
+sampleAlpha <- function(n, a1, b1, a2, b2, 
   a = a1, b = b1, pi0 = .5, pi1 = 1 - pi0, c = 1,
   family = c("binomial", "poisson"))
 {
@@ -144,11 +144,11 @@ sample_alpha <- function(n, a1, b1, a2, b2,
 
   # dispatch correct function
   if(family == "binomial"){
-    out <- sample_alpha_binomial(n, a1, b1, a2, b2, a, b, pi0, pi1, c)
+    out <- sampleAlphaBinomial(n, a1, b1, a2, b2, a, b, pi0, pi1, c)
   }
 
   if(family == "poisson"){
-    out <- sample_alpha_poisson(n, a1, b1, a2, b2, a, b, pi0, pi1, c)
+    out <- sampleAlphaPoisson(n, a1, b1, a2, b2, a, b, pi0, pi1, c)
   }
 
   # return
@@ -218,17 +218,17 @@ sample_alpha <- function(n, a1, b1, a2, b2,
 #' @param pi0 the prior probability of the null hypothesis
 #' @param pi1 the prior probability of the alternative hypothesis
 #' @param c relative loss constant (loss due to type II error divided by loss due to type I error)
-#' @seealso \code{\link{sample_alpha}}, \code{\link{find_size}}
-#' @export sample_alpha_binomial
+#' @seealso \code{\link{sampleAlpha}}, \code{\link{findSize}}
+#' @export sampleAlphaBinomial
 #' @examples
 #' \dontrun{
 #' 
 #' a <- 5; b <- 5
-#' sample_alpha(t = 20, a, b)
+#' sampleAlpha(t = 20, a, b)
 #' 
 #' 
 #' }
-sample_alpha_binomial <- function(n, a1, b1, a2, b2, 
+sampleAlphaBinomial <- function(n, a1, b1, a2, b2, 
   a = a1, b = b1, pi0 = .5, pi1 = 1 - pi0, c = 1)
 {
 
@@ -236,7 +236,7 @@ sample_alpha_binomial <- function(n, a1, b1, a2, b2,
   if(is.numeric(n) && length(n) > 1){
     return(sapply(as.list(n), function(x){
       message(".", appendLF = FALSE)
-      sample_alpha_binomial(x, a1, b1, a2, b2, a, b, pi0, pi1, c)
+      sampleAlphaBinomial(x, a1, b1, a2, b2, a, b, pi0, pi1, c)
     }))
   }
   
@@ -322,17 +322,17 @@ sample_alpha_binomial <- function(n, a1, b1, a2, b2,
 #' @param pi0 the prior probability of the null hypothesis
 #' @param pi1 the prior probability of the alternative hypothesis
 #' @param c relative loss constant (loss due to type II error divided by loss due to type I error)
-#' @seealso \code{\link{sample_alpha}}, \code{\link{find_size}}
-#' @export sample_alpha_poisson
+#' @seealso \code{\link{sampleAlpha}}, \code{\link{findSize}}
+#' @export sampleAlphaPoisson
 #' @examples
 #' \dontrun{
 #' 
 #' a <- ; b <- 
-#' sample_alpha(t = 20, a, b)
+#' sampleAlpha(t = 20, a, b)
 #' 
 #' 
 #' }
-sample_alpha_poisson <- function(t, a1, b1, a2, b2, 
+sampleAlphaPoisson <- function(t, a1, b1, a2, b2, 
   a = a1, b = b1, pi0 = .5, pi1 = 1 - pi0, c = 1)
 {
 
@@ -340,7 +340,7 @@ sample_alpha_poisson <- function(t, a1, b1, a2, b2,
   if(is.numeric(t) && length(t) > 1){
     return(sapply(as.list(t), function(x){
       message(".", appendLF = FALSE)
-      sample_alpha_poisson(x, a1, b1, a2, b2, a, b, pi0, pi1, c)
+      sampleAlphaPoisson(x, a1, b1, a2, b2, a, b, pi0, pi1, c)
     }))
   }
 
