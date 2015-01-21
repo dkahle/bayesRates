@@ -54,7 +54,7 @@ plotBeta(10, 10)
 ```
 
 Now operate under the assumption that they are different.  In that case, what are the beliefs about the two?  One way to think about this is to think about them one at a time.  If we think that they are the same, and that the quarter is fair (represented by the Beta(10,10)), then we can assume they are both like that.  If we think they are different, we may still think that the quarter is fair (Beta(10,10)), so we only need to choose the distribution of the half-dollar.  Perhaps that distribution is well-represented by a Beta(2,1) distribution.  The two distributions can be visualized together using `plotBeta()`:
-```{r}
+```{r, fig.height = 4, fig.width = 8}
 plotBeta(c(10,2),c(10,1))
 ```
 
@@ -74,7 +74,7 @@ The conclusion reached is that of the optimal decision rule assuming that [Type 
 * the prior probabilities of the null and alternative hypotheses is the same (the prior odds is 1; this can be changed with arguments `pi0` and `pi1`), and 
 * the decision rule is the optimal one (see [Zhao et al. (2011)](http://link.springer.com/article/10.1007/s11424-011-8250-x#page-1)).
 Under these assumptions, once the hyperparameters `a1`, `b1`, `a2`, and `b2` are set, the decision rule itself is entirely characterized.  (If the user should want the hyperparameters on the null hypothesis and the first probability of the alternative, he can specify them with `a` and `b` in addition to the arguments above).  This decision rule can be visualized with the `plotBinomRule()` function:
-```{r}
+```{r, fig.height = 6, fig.width = 6}
 plotBinomRule(n = 50, 
   a1 = 10, b1 = 10,
   a2 =  2, b2 = 1
