@@ -10,7 +10,7 @@ library(bayesRates)
 ```
 
 Binomial tests
-==============
+--------------
 
 Suppose that we have two coins, a quarter and a half dollar, and we're interested in determining whether or not they flip heads with the same probability. After flipping each 50 times, the quarter flips heads 26 times and the half dollar flips heads 34 times. Should we conclude the likelihoods are the same?
 
@@ -99,7 +99,15 @@ The conclusion reached is that of the optimal decision rule assuming that [Type 
 
 ### Visualizing the decision rule
 
-`bayesBinomTest()` assumes that \* the loss associated with Type I and Type II errors are the same (this can be changed with the `c1` and `c2`, or simply the `c`, arguments), \* the prior probabilities of the null and alternative hypotheses is the same (the prior odds is 1; this can be changed with arguments `pi0` and `pi1`), and \* the decision rule is the optimal one (see [Zhao et al. (2011)](http://link.springer.com/article/10.1007/s11424-011-8250-x#page-1)). Under these assumptions, once the hyperparameters `a1`, `b1`, `a2`, and `b2` are set, the decision rule itself is entirely characterized. (If the user should want the hyperparameters on the null hypothesis and the first probability of the alternative, he can specify them with `a` and `b` in addition to the arguments above). This decision rule can be visualized with the `plotBinomRule()` function:
+`bayesBinomTest()` assumes that
+
+-   the loss associated with Type I and Type II errors are the same (this can be changed with the `c1` and `c2`, or simply the `c`, arguments),
+
+-   the prior probabilities of the null and alternative hypotheses is the same (the prior odds is 1; this can be changed with arguments `pi0` and `pi1`), and
+
+-   the decision rule is the optimal one (see [Zhao et al. (2011)](http://link.springer.com/article/10.1007/s11424-011-8250-x#page-1)). Under these assumptions, once the hyperparameters `a1`, `b1`, `a2`, and `b2` are set, the decision rule itself is entirely characterized. (If the user should want the hyperparameters on the null hypothesis and the first probability of the alternative, he can specify them with `a` and `b` in addition to the arguments above).
+
+This decision rule can be visualized with the `plotBinomRule()` function:
 
 ``` r
 plotBinomRule(n = 50, 
@@ -108,7 +116,13 @@ plotBinomRule(n = 50,
 )
 ```
 
-![](README-unnamed-chunk-8-1.png)
+![](README-unnamed-chunk-8-1.png) Note that this rule rejects the null hypothesis.
+
+In this graphic, the green squares indicate places where the test concludes that the two have the same probability of heads (H0); where it is red, it concludes that the two have different probabilities of flipping heads. Notice that the rule is not symmetric. This is due to the prior on the alternative hypothesis favoring the half dollar flipping heads more often.
+
+### Sample size determination
+
+Suppose now that we want to
 
 Installation
 ------------
