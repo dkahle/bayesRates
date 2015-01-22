@@ -105,24 +105,32 @@ The conclusion reached is that of the optimal decision rule assuming that [Type 
 
 -   the prior probabilities of the null and alternative hypotheses is the same (the prior odds is 1; this can be changed with arguments `pi0` and `pi1`), and
 
--   the decision rule is the optimal one (see [Zhao et al. (2011)](http://link.springer.com/article/10.1007/s11424-011-8250-x#page-1)). Under these assumptions, once the hyperparameters `a1`, `b1`, `a2`, and `b2` are set, the decision rule itself is entirely characterized. (If the user should want the hyperparameters on the null hypothesis and the first probability of the alternative, he can specify them with `a` and `b` in addition to the arguments above).
+-   the decision rule is the optimal one (see [Zhao et al. 2011](http://link.springer.com/article/10.1007/s11424-011-8250-x#page-1)). Under these assumptions, once the hyperparameters `a1`, `b1`, `a2`, and `b2` are set, the decision rule itself is entirely characterized. (If the user should want the hyperparameters on the null hypothesis and the first probability of the alternative, he can specify them with `a` and `b` in addition to the arguments above).
 
 This decision rule can be visualized with the `plotBinomRule()` function:
 
 ``` r
 plotBinomRule(n = 50, 
   a1 = 10, b1 = 10,
-  a2 =  2, b2 = 1
+  a2 = 2, b2 = 1
 )
 ```
 
-![](README-unnamed-chunk-8-1.png) Note that this rule rejects the null hypothesis.
+![](README-unnamed-chunk-8-1.png)
+
+Note that this rule rejects the null hypothesis.
 
 In this graphic, the green squares indicate places where the test concludes that the two have the same probability of heads (H0); where it is red, it concludes that the two have different probabilities of flipping heads. Notice that the rule is not symmetric. This is due to the prior on the alternative hypothesis favoring the half dollar flipping heads more often.
 
 ### Sample size determination
 
-Suppose now that we want to
+Suppose now that we want to know how many times we need to flip the coins until the resulting decision rule will reject on average 80% of the time when the null hypothesis is false.
+
+A brief time-out should be taken to explain precisely what we mean in this context. In general, the sample size determination problem seeks to find a requisite sample size for a particular decision rule to meet a specified level of [power](http://en.wikipedia.org/wiki/Statistical_power); that is, the probability that the test rejects when it should (the conclusion is in favor of H1 when H1 is in fact true). However, there are several ways that the null hypothesis can be false (and true, in fact), so power is not simply a number, but a function defined over the alternative space. A simple example suffices to see this idea: suppose that the quarter flips heads 50% of the time and the half dollar flips heads 52% of the time. Since 50% ≠ 52%, H0 is false and H1 is true; however, the difference is so small, that it is unlikely that a test will reveal the difference. We would say (loosely) that the power is very low. On the other hand, if the half dollar flips heads 82% of the time, we would expect the power to be quite high. Thus, the concept of power depends on the probabilities themselves.
+
+In this context we use a related topic called expected Bayesian power (EBP), but we'll often simply refer to it as power. The difference is that while power depends on the probabilities themselves, the EBP combines all of the possible powers and [averages them, weighting by their likelihood of occurrence](http://en.wikipedia.org/wiki/Expected_value) under the prior distribution specified by the alternative hypothesis : the product of the Beta(10,10) and the Beta(2,1) in our example.
+
+findSize(.80, a1 = 10, b1 = 10, a2 = 2, b2 = 1, family = "binomial" )
 
 Installation
 ------------
