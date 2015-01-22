@@ -99,11 +99,15 @@ A brief time-out should be taken to explain precisely what we mean in this conte
 
 In this context we use a related topic called expected Bayesian power (EBP), but we'll often simply refer to it as power.  The difference is that while power depends on the probabilities themselves, the EBP combines all of the possible powers and [averages them, weighting by their likelihood of occurrence](http://en.wikipedia.org/wiki/Expected_value) under the prior distribution specified by the alternative hypothesis : the product of the Beta(10,10) and the Beta(2,1) in our example.
 
+
+The `findSize()` function takes in a power (EBP) specification, priors parameters on the null and alternative hypotheses and determines the sample size needed so that the decision rule made by `bayesBinomTest()` has _at least_ that power (EBP).
+```{r}
 findSize(.80, 
   a1 = 10, b1 = 10,
   a2 = 2, b2 = 1,
   family = "binomial"
 )
+```
 
 
 ## Installation
