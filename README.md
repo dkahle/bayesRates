@@ -95,7 +95,7 @@ bayesBinomTest(x = c(26, 34), n = 50,
 #> Conclusion : Reject null hypothesis of proportion equivalence
 ```
 
-The conclusion reached is that of the optimal decision rule assuming that [Type I and Type II errors](http://en.wikipedia.org/wiki/Type_I_and_type_II_errors) are equally bad; this result can be found in [Zhao et al. (2011)](http://link.springer.com/article/10.1007/s11424-011-8250-x#page-1).
+Note that the conclusion is to reject \(H_{0}\). The conclusion makes use of the optimal decision rule assuming that [Type I and Type II errors](http://en.wikipedia.org/wiki/Type_I_and_type_II_errors) are equally bad; this result can be found in [Zhao et al. (2011)](http://link.springer.com/article/10.1007/s11424-011-8250-x#page-1) are equally unfavorable.
 
 ### Visualizing the decision rule
 
@@ -107,7 +107,7 @@ The conclusion reached is that of the optimal decision rule assuming that [Type 
 
 -   the decision rule is the optimal one (see [Zhao et al. 2011](http://link.springer.com/article/10.1007/s11424-011-8250-x#page-1)). Under these assumptions, once the hyperparameters `a1`, `b1`, `a2`, and `b2` are set, the decision rule itself is entirely characterized. (If the user should want the hyperparameters on the null hypothesis and the first probability of the alternative, he can specify them with `a` and `b` in addition to the arguments above).
 
-This decision rule can be visualized with the `plotBinomRule()` function:
+Apart from seeing the decision rule's action on one dataset (that's what `bayesBinomTest()` does), we can visualize the entire decision rule using the `plotBinomRule()` function:
 
 ``` r
 plotBinomRule(n = 50, 
