@@ -130,7 +130,7 @@ A brief time-out should be taken to explain precisely what we mean in this conte
 
 In this context we use a related topic called expected Bayesian power (EBP), but we'll often simply refer to it as power. The difference is that while power depends on the probabilities themselves, the EBP combines all of the possible powers and [averages them, weighting by their likelihood of occurrence](http://en.wikipedia.org/wiki/Expected_value) under the prior distribution specified by the alternative hypothesis : the product of the Beta(10,10) and the Beta(2,1) in our example.
 
-The `findSize()` function takes in a power (EBP) specification, priors parameters on the null and alternative hypotheses and determines the sample size needed so that the decision rule made by `bayesBinomTest()` has *at least* that power (EBP).
+The `findSize()` function takes in a power (EBP) specification, priors parameters on the null and alternative hypotheses and determines the smallest sample size needed so that the decision rule made by `bayesBinomTest()` has *at least* that power.
 
 ``` r
 findSize(.80, 
@@ -145,7 +145,7 @@ findSize(.80,
 #> [1] 0.8000492
 ```
 
-How does this work? Given the prior specifications, one can write down a formula to compute the the power (EBP) for a given sample size; this is the `samplePowerBinomial()` function. This function is very fast because it is actually written in C++ (via [**Rcpp**](http://www.rcpp.org)). What `findSize()` does is to run `samplePowerBinomial()` iteratively using a heuristic to find the smallest sample size with a given power.
+How does this work? Given the prior specifications, one can write down a formula to compute the power of the decision rule for a given sample size; this is the `samplePowerBinomial()` function. This function is very fast because it is actually written in C++ (via [**Rcpp**](http://www.rcpp.org)). What `findSize()` does is to run `samplePowerBinomial()` iteratively using a heuristic to find the smallest sample size with a given power.
 
 <!-- 
 iteratively using the following heuristic: start at a sample size of 1 and determine the power, if it is less than the specified level, double the sample size, if not, return 1.  Continue this process until you get a power above that which was specified, and then march back one sample at a time until you get the smallest sample size that surpasses the threshold.  (The reason that this method is used over, say, a Newton-type method is that the objective function has unpredictable discontinuities.)  A faster method uses the specification `method = "halves"`:
@@ -164,6 +164,11 @@ findSize(.80,
 #> [1] 0.7997452
 ```
 -->
+Poisson tests
+-------------
+
+From the users perspective, two-sample rates tests with Poisson data work in precisely the same way; the only material difference is that the prior distributions refer to the alpha (`a`, `a1`, or `a2`) and beta (`b`, `b1`, or `b2`) parameters of a *gamma distribution*, not a beta distribution.
+
 Installation
 ------------
 
