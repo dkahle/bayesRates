@@ -2,7 +2,7 @@
 bayesRates
 ==========
 
-**bayesRates** is an R package that allows users to (1) perform two-sample tests with binomial and Poisson data from a Bayesian perspective, (2) view decision rules to understand them better, and (3) determine sample sizes for designing such procedures. The package currently works for binomial and Poisson data.
+**bayesRates** is an R package that allows users to (1) perform two-sample rate tests from a Bayesian perspective, (2) view decision rules to understand them better, and (3) determine sample sizes for designing such procedures. The package currently works for binomial and Poisson data.
 
 ``` r
 library(bayesRates)
