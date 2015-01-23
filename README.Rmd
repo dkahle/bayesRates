@@ -58,7 +58,7 @@ Now operate under the assumption that they are different.  In that case, what ar
 plotBeta(c(10,2),c(10,1))
 ```
 
-At this point, we're ready for `bayesBinomTest()`:
+At this point, we're ready for `bayesBinomTest()`, __bayesRates__'s analogue to `prop.test()` or `binom.test()`:
 ```{r}
 bayesBinomTest(x = c(26, 34), n = 50,  
   a1 = 10, b1 = 10,

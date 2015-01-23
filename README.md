@@ -64,7 +64,7 @@ plotBeta(c(10,2),c(10,1))
 
 ![](README-unnamed-chunk-6-1.png)
 
-At this point, we're ready for `bayesBinomTest()`:
+At this point, we're ready for `bayesBinomTest()`, **bayesRates**'s analogue to `prop.test()` or `binom.test()`:
 
 ``` r
 bayesBinomTest(x = c(26, 34), n = 50,  
