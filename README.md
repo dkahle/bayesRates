@@ -2,7 +2,7 @@
 bayesRates
 ==========
 
-**bayesRates** is an R package that allows users to (1) perform two-sample tests with binomial and Poisson data from a Bayesian perspective and (2) determine sample sizes for designing such procedures.
+**bayesRates** is an R package that allows users to (1) perform two-sample tests with binomial and Poisson data from a Bayesian perspective, (2) view decision rules to understand them better, and (3) determine sample sizes for designing such procedures. The package currently works for binomial and Poisson data.
 
 ``` r
 library(bayesRates)
@@ -225,6 +225,8 @@ findSize(.80,
 #> $power
 #> [1] 0.8000492
 ```
+
+This output is *long*! Why? What is going on here? Given the prior specifications, one can write down a formula for the
 
 Installation
 ------------
