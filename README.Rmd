@@ -108,7 +108,10 @@ findSize(.80,
 )
 ```
 
-This output is _long_!  Why?  What is going on here?  Given the prior specifications, one can write down a formula to compute the the power (EBP) for a given sample size, this is the `samplePowerBinomial()` function. This function is very fast because it is actually written in C++ (via [__Rcpp__](http://www.rcpp.org)).  What `findSize()` does is to run `samplePowerBinomial()` iteratively using the following heuristic: start at a sample size of 1 and determine the power, if it is less than the specified level, double the sample size, if not, return 1.  Continue this process until you get a power above that which was specified, and then march back one sample at a time until you get the smallest sample size that surpasses the threshold.  (The reason that this method is used over, say, a Newton-type method is that the objective function has unpredictable discontinuities.)  A faster method uses the specification `method = "halves"`:
+How does this work?  Given the prior specifications, one can write down a formula to compute the the power (EBP) for a given sample size; this is the `samplePowerBinomial()` function. This function is very fast because it is actually written in C++ (via [__Rcpp__](http://www.rcpp.org)).  What `findSize()` does is to run `samplePowerBinomial()` iteratively using a heuristic to find the smallest sample size with a given power.
+
+<!-- 
+iteratively using the following heuristic: start at a sample size of 1 and determine the power, if it is less than the specified level, double the sample size, if not, return 1.  Continue this process until you get a power above that which was specified, and then march back one sample at a time until you get the smallest sample size that surpasses the threshold.  (The reason that this method is used over, say, a Newton-type method is that the objective function has unpredictable discontinuities.)  A faster method uses the specification `method = "halves"`:
 
 ```{r}
 findSize(.80, 
@@ -117,6 +120,7 @@ findSize(.80,
   family = "binomial", method = "halves"
 )
 ```
+-->
 
 
 

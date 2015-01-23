@@ -138,87 +138,6 @@ findSize(.80,
   a2 = 2, b2 = 1,
   family = "binomial"
 )
-#> size = 2, power = 0.5
-#> size = 4, power = 0.5342
-#> size = 8, power = 0.5548
-#> size = 16, power = 0.594
-#> size = 32, power = 0.6562
-#> size = 64, power = 0.7169
-#> size = 128, power = 0.7734
-#> size = 256, power = 0.8225
-#> size = 255, power = 0.8224
-#> size = 254, power = 0.8223
-#> size = 253, power = 0.8225
-#> size = 252, power = 0.8221
-#> size = 251, power = 0.8218
-#> size = 250, power = 0.8214
-#> size = 249, power = 0.821
-#> size = 248, power = 0.8207
-#> size = 247, power = 0.8204
-#> size = 246, power = 0.82
-#> size = 245, power = 0.8197
-#> size = 244, power = 0.8194
-#> size = 243, power = 0.8191
-#> size = 242, power = 0.8188
-#> size = 241, power = 0.8185
-#> size = 240, power = 0.8182
-#> size = 239, power = 0.8179
-#> size = 238, power = 0.8177
-#> size = 237, power = 0.8175
-#> size = 236, power = 0.8173
-#> size = 235, power = 0.8172
-#> size = 234, power = 0.817
-#> size = 233, power = 0.8166
-#> size = 232, power = 0.8162
-#> size = 231, power = 0.8159
-#> size = 230, power = 0.8156
-#> size = 229, power = 0.8152
-#> size = 228, power = 0.8148
-#> size = 227, power = 0.8144
-#> size = 226, power = 0.8141
-#> size = 225, power = 0.8138
-#> size = 224, power = 0.8135
-#> size = 223, power = 0.8132
-#> size = 222, power = 0.8129
-#> size = 221, power = 0.8126
-#> size = 220, power = 0.8123
-#> size = 219, power = 0.812
-#> size = 218, power = 0.8118
-#> size = 217, power = 0.8117
-#> size = 216, power = 0.8116
-#> size = 215, power = 0.8112
-#> size = 214, power = 0.8108
-#> size = 213, power = 0.8104
-#> size = 212, power = 0.8101
-#> size = 211, power = 0.8096
-#> size = 210, power = 0.8093
-#> size = 209, power = 0.8089
-#> size = 208, power = 0.8085
-#> size = 207, power = 0.8082
-#> size = 206, power = 0.8079
-#> size = 205, power = 0.8075
-#> size = 204, power = 0.8072
-#> size = 203, power = 0.8069
-#> size = 202, power = 0.8066
-#> size = 201, power = 0.8064
-#> size = 200, power = 0.8061
-#> size = 199, power = 0.806
-#> size = 198, power = 0.8056
-#> size = 197, power = 0.8051
-#> size = 196, power = 0.8047
-#> size = 195, power = 0.8043
-#> size = 194, power = 0.8038
-#> size = 193, power = 0.8034
-#> size = 192, power = 0.803
-#> size = 191, power = 0.8026
-#> size = 190, power = 0.8023
-#> size = 189, power = 0.8018
-#> size = 188, power = 0.8014
-#> size = 187, power = 0.8011
-#> size = 186, power = 0.8007
-#> size = 185, power = 0.8004
-#> size = 184, power = 0.8
-#> size = 183, power = 0.7997
 #> $size
 #> [1] 184
 #> 
@@ -226,8 +145,25 @@ findSize(.80,
 #> [1] 0.8000492
 ```
 
-This output is *long*! Why? What is going on here? Given the prior specifications, one can write down a formula for the
+How does this work? Given the prior specifications, one can write down a formula to compute the the power (EBP) for a given sample size; this is the `samplePowerBinomial()` function. This function is very fast because it is actually written in C++ (via [**Rcpp**](http://www.rcpp.org)). What `findSize()` does is to run `samplePowerBinomial()` iteratively using a heuristic to find the smallest sample size with a given power.
 
+<!-- 
+iteratively using the following heuristic: start at a sample size of 1 and determine the power, if it is less than the specified level, double the sample size, if not, return 1.  Continue this process until you get a power above that which was specified, and then march back one sample at a time until you get the smallest sample size that surpasses the threshold.  (The reason that this method is used over, say, a Newton-type method is that the objective function has unpredictable discontinuities.)  A faster method uses the specification `method = "halves"`:
+
+
+```r
+findSize(.80, 
+  a1 = 10, b1 = 10,
+  a2 = 2, b2 = 1,
+  family = "binomial", method = "halves"
+)
+#> $size
+#> [1] 183
+#> 
+#> $power
+#> [1] 0.7997452
+```
+-->
 Installation
 ------------
 
