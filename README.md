@@ -64,7 +64,7 @@ plotBeta(c(10,2),c(10,1))
 
 ![](README-unnamed-chunk-6-1.png)
 
-At this point, we're ready for `bayesBinomTest()`, **bayesRates**'s analogue to `prop.test()` or `binom.test()`:
+At this point, we're ready for `bayesBinomTest()`, **bayesRates**' analogue to `prop.test()` or `binom.test()`:
 
 ``` r
 bayesBinomTest(x = c(26, 34), n = 50,  
@@ -95,7 +95,7 @@ bayesBinomTest(x = c(26, 34), n = 50,
 #> Conclusion : Reject null hypothesis of proportion equivalence
 ```
 
-Note that the conclusion is to reject \(H_{0}\). The conclusion makes use of the optimal decision rule assuming that [Type I and Type II errors](http://en.wikipedia.org/wiki/Type_I_and_type_II_errors) are equally bad; this result can be found in [Zhao et al. (2011)](http://link.springer.com/article/10.1007/s11424-011-8250-x#page-1) are equally unfavorable.
+Note that the conclusion is to reject the null hypothesis of equality of rates. The conclusion makes use of the optimal decision rule assuming that [Type I and Type II errors](http://en.wikipedia.org/wiki/Type_I_and_type_II_errors) are equally bad; this result can be found in [Zhao et al. (2011)](http://link.springer.com/article/10.1007/s11424-011-8250-x#page-1) are equally unfavorable.
 
 ### Visualizing the decision rule
 
@@ -168,6 +168,8 @@ Poisson tests
 -------------
 
 From the users perspective, two-sample rates tests with Poisson data work in precisely the same way; the only material difference is that the prior distributions refer to the alpha (`a`, `a1`, or `a2`) and beta (`b`, `b1`, or `b2`) parameters of a *gamma distribution*, not a beta distribution.
+
+As an example, suppose that we are considering two drugs: drug A, which is the current industry standard, and drug B, a novel therapy of interest.
 
 Installation
 ------------

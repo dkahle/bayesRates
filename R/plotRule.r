@@ -302,10 +302,14 @@ plotBinomRule <- function(n, a1, b1, a2, b2,
 #' plotPoisRule(4, 1, 1, 1, 1)
 #' plotPoisRule(5, 1, 1, 1, 1)
 #' plotPoisRule(10, 1, 1, 1, 1)
-#' plotPoisRule(5, 1, 1, 1, 1, sizeby = "null")
-#' plotPoisRule(5, 1, 1, 1, 1, sizeby = "alt") # uniform
+#' plotPoisRule(30, 1, 1, 1, 1)
+#' plotPoisRule(100, 1, 1, 1, 1)
 #' 
-#' plotPoisRule(30, 3, 7, 7, 3)
+#' 
+#' plotPoisRule(5, 1, 1, 1, 1, sizeby = "null")
+#' plotPoisRule(5, 1, 1, 1, 1, sizeby = "alt") 
+#' 
+#' plotPoisRule(30, 3, 7, 7, 3, geom = "point")
 #' plotPoisRule(100, 3, 7, 7, 3)
 #'
 #' plotPoisRule(30, 3, 7, 7, 3, sizeby = "null") + theme_bw()
@@ -335,7 +339,22 @@ plotPoisRule <- function(t, a1, b1, a2, b2,
   y1max <- qnbinom(.99999, a1, b1/(t+b1))
   y2max <- qnbinom(.99999, a2, b2/(t+b2))
   
-  df <- expand.grid(y1 = y1min:y1max, y2 = y2min:y2max)
+  y1step <- floor((y1max-y1min)/100)
+  y2step <- floor((y2max-y2min)/100)
+  
+  if(y1max-y1min > 100){
+    y1 <- y1min + y1step*(0:99)
+  } else {
+    y1 <- y1min:y1max
+  }
+  
+  if(y2max-y2min > 100){
+    y2 <- y2min + y2step*(0:99)
+  } else {
+    y2 <- y2min:y2max
+  }
+  
+  df <- expand.grid(y1 = y1, y2 = y2)
   
   if(geom == "auto" && nrow(df) <= 50^2){
     geom <- "point"
