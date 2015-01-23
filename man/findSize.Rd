@@ -6,7 +6,7 @@
 \usage{
 findSize(power, a1, b1, a2, b2, a = a1, b = b1, pi0 = 0.5, pi1 = 1 -
   pi0, c = 1, family = c("binomial", "poisson"), method = c("ones",
-  "halves"))
+  "halves"), quiet = TRUE)
 }
 \arguments{
 \item{power}{desired power}
@@ -32,6 +32,8 @@ findSize(power, a1, b1, a2, b2, a = a1, b = b1, pi0 = 0.5, pi1 = 1 -
 \item{family}{"binomial" or "poisson", depending on test}
 
 \item{method}{"ones" or "halves"}
+
+\item{quiet}{message the user with calls to \code{\link{samplePower}}}
 }
 \description{
 Determine a sample size for a given power and hyperparameter configuration

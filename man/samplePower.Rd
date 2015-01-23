@@ -38,7 +38,7 @@ Determine the power of a test with given sample size
 
 a1 <- 3; b1 <- 7
 a2 <- 7; b2 <- 3
-plot_beta(c(a1, a2), c(b1, b2))
+plotBeta(c(a1, a2), c(b1, b2))
 samplePower(n = 10, a1, b1, a2, b2)
 samplePower(n = 11, a1, b1, a2, b2)
 samplePower(n = 1, a1, b1, a2, b2)

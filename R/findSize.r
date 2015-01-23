@@ -14,6 +14,7 @@
 #' @param c relative loss constant (loss due to type II error divided by loss due to type I error)
 #' @param family "binomial" or "poisson", depending on test
 #' @param method "ones" or "halves"
+#' @param quiet message the user with calls to \code{\link{samplePower}}
 #' @seealso \code{\link{samplePower}}
 #' @export
 #' @examples
@@ -47,7 +48,7 @@
 findSize <- function(power, a1, b1, a2, b2, 
   a = a1, b = b1, pi0 = .5, pi1 = 1 - pi0, c = 1, 
   family = c("binomial", "poisson"),
-  method = c("ones", "halves")
+  method = c("ones", "halves"), quiet = TRUE
 ){
 	
   # check arguments
@@ -62,6 +63,7 @@ findSize <- function(power, a1, b1, a2, b2,
   t <- 2^count
   p <- samplePower(t, a1, b1, a2, b2, a = a, b = b, 
       pi0 = pi0, pi1 = pi1, c = c, family = family)
+  
   if(p > power){
     message(paste0(
       "size = ", 1, 
@@ -79,19 +81,19 @@ findSize <- function(power, a1, b1, a2, b2,
         pi0 = pi0, pi1 = pi1, c = c, family = family
       )
     )
-    message(paste0(
+    if(!quiet) message(paste0(
       "size = ", 2^count, 
       ", power = ", round(last(p), 4))
     )
   }
   
-  
+  # start working back with ones
   if(method == "ones"){
     for(k in (2^count-1):(2^(count-1)+1)){
       candidate_p <- samplePower(k, a1, b1, a2, b2, a = a, b = b, 
         pi0 = pi0, pi1 = pi1, c = c, family = family
       )
-      message(paste0(
+      if(!quiet) message(paste0(
         "size = ", k, 
         ", power = ", round(candidate_p, 4))
       )      
@@ -105,9 +107,7 @@ findSize <- function(power, a1, b1, a2, b2,
     return(list(size = k+1, power = last(p)))
   }
   
-  
-
-  
+  # start working back with ones
   if(method == "halves"){
   
     next_t <- 2^(count-1) + 2^(count-2)
@@ -117,7 +117,7 @@ findSize <- function(power, a1, b1, a2, b2,
       t_p <- samplePower(next_t, a1, b1, a2, b2, a = a, b = b, 
         pi0 = pi0, pi1 = pi1, c = c, family = family
       )
-      message(paste0(
+      if(!quiet) message(paste0(
         "size = ", next_t, 
         ", power = ", round(t_p, 4))
       )      
@@ -129,8 +129,7 @@ findSize <- function(power, a1, b1, a2, b2,
       }    
       
       t <- c(t, next_t)
-      p <- c(p, t_p)
-      
+      p <- c(p, t_p)      
     }
     
     if(t_p < power){
@@ -138,7 +137,7 @@ findSize <- function(power, a1, b1, a2, b2,
       t_p <- samplePower(next_t, a1, b1, a2, b2, a = a, b = b, 
         pi0 = pi0, pi1 = pi1, c = c, family = family
       )
-      message(paste0(
+      if(!quiet) message(paste0(
         "size = ", next_t, 
         ", power = ", round(t_p, 4))
       )  
@@ -148,8 +147,6 @@ findSize <- function(power, a1, b1, a2, b2,
     
     return(list(size = last(t), power = last(p)))
   }
-
-  
 }
 
 
