@@ -6,11 +6,9 @@ Description: bayesRates allows you to calculate the sample size required for
     operating characteristics.
 URL: https://github.com/dkahle/bayesRates
 BugReports: https://github.com/dkahle/bayesRates/issues
-Authors@R: as.person(c(
-    "David Kahle <david.kahle@gmail.com> [aut, cre]",
-    "Ryan Sides <ryan_sides@lilly.com> [aut]",
-    "James Stamey <james_stamey@baylor.edu [aut]"
-    ))
+Authors@R: c(person("David", "Kahle", email = "david.kahle@gmail.com", role = c("aut", "cre")),
+  person("Ryan", "Sides", email = "ryan_sides@lilly.com", role = "aut"),
+  person("James", "Stamey", email = "james_stamey@baylor.edu", role = "aut"))
 Depends:
     R (>= 2.15.0),
     ggplot2 (>= 0.9.0)
