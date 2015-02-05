@@ -5,6 +5,30 @@
 
 using namespace Rcpp;
 
+// sampleAlphaPoissonCpp
+double sampleAlphaPoissonCpp(int t, double a1, double b1, double a2, double b2, double a, double b, double pi0, double pi1, double c);
+RcppExport SEXP bayesRates_sampleAlphaPoissonCpp(SEXP tSEXP, SEXP a1SEXP, SEXP b1SEXP, SEXP a2SEXP, SEXP b2SEXP, SEXP aSEXP, SEXP bSEXP, SEXP pi0SEXP, SEXP pi1SEXP, SEXP cSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< int >::type t(tSEXP );
+        Rcpp::traits::input_parameter< double >::type a1(a1SEXP );
+        Rcpp::traits::input_parameter< double >::type b1(b1SEXP );
+        Rcpp::traits::input_parameter< double >::type a2(a2SEXP );
+        Rcpp::traits::input_parameter< double >::type b2(b2SEXP );
+        Rcpp::traits::input_parameter< double >::type a(aSEXP );
+        Rcpp::traits::input_parameter< double >::type b(bSEXP );
+        Rcpp::traits::input_parameter< double >::type pi0(pi0SEXP );
+        Rcpp::traits::input_parameter< double >::type pi1(pi1SEXP );
+        Rcpp::traits::input_parameter< double >::type c(cSEXP );
+        double __result = sampleAlphaPoissonCpp(t, a1, b1, a2, b2, a, b, pi0, pi1, c);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // samplePowerBinomialCpp
 double samplePowerBinomialCpp(int n, double a1, double b1, double a2, double b2, double a, double b, double pi0, double pi1, double c);
 RcppExport SEXP bayesRates_samplePowerBinomialCpp(SEXP nSEXP, SEXP a1SEXP, SEXP b1SEXP, SEXP a2SEXP, SEXP b2SEXP, SEXP aSEXP, SEXP bSEXP, SEXP pi0SEXP, SEXP pi1SEXP, SEXP cSEXP) {

@@ -40,12 +40,12 @@ Determine the probability of type I error of a test with given sample size
 
 
 # generate samples of size 30
-N <- 1000000
+N <- 10000#00
 n <- 30
 
 a1 <- 3; b1 <- 7
 a2 <- 7; b2 <- 3
-plot_beta(c(a1, a2), c(b1, b2))
+plotBeta(c(a1, a2), c(b1, b2))
 
 pi <- .3
 pi <- rbeta(N, a1, b1)
@@ -53,10 +53,11 @@ data <- data.frame(
   x1 = rbinom(N, n, pi),
   x2 = rbinom(N, n, pi)
 )
-test <- function(x) bayes_binom_test(x, n, a1, b1, a2, b2)$reject
+test <- function(x) bayesBinomTest(x, n, a1, b1, a2, b2)$reject
 mean( apply(data, 1, test) ) # .061832 at 1E6
 sampleAlpha_ryan("binomial", n, 1, a1, b1) # .0204
 sampleAlpha(n, a1, b1, a2, b2)
+bayesRates:::sampleAlphaPoissonCpp(n, a1, b1, a2, b2, a1, b1, .5, .5, 1)
 
 
 
@@ -64,8 +65,8 @@ sampleAlpha(n, a1, b1, a2, b2)
 # note that the significance depends on all parameters
 a1 <- 3; b1 <- 7
 a2 <- 90; b2 <- 10
-plot_beta(c(a1, a2), c(b1, b2))
-f <- function(x) bayes_binom_test(x, n, a1, b1, a2, b2)$reject
+plotBeta(c(a1, a2), c(b1, b2))
+f <- function(x) bayesBinomTest(x, n, a1, b1, a2, b2)$reject
 f(c(11, 8))
 mean( apply(data, 1, f) )
 sampleAlpha(n, a1, b1, a2, b2)

@@ -22,12 +22,12 @@
 #'  
 #' 
 #' # generate samples of size 30
-#' N <- 1000000
+#' N <- 10000#00
 #' n <- 30
 #' 
 #' a1 <- 3; b1 <- 7
 #' a2 <- 7; b2 <- 3
-#' plot_beta(c(a1, a2), c(b1, b2))
+#' plotBeta(c(a1, a2), c(b1, b2))
 #' 
 #' pi <- .3
 #' pi <- rbeta(N, a1, b1)
@@ -35,10 +35,11 @@
 #'   x1 = rbinom(N, n, pi),
 #'   x2 = rbinom(N, n, pi)  
 #' )
-#' test <- function(x) bayes_binom_test(x, n, a1, b1, a2, b2)$reject
+#' test <- function(x) bayesBinomTest(x, n, a1, b1, a2, b2)$reject
 #' mean( apply(data, 1, test) ) # .061832 at 1E6
 #' sampleAlpha_ryan("binomial", n, 1, a1, b1) # .0204
 #' sampleAlpha(n, a1, b1, a2, b2) 
+#' bayesRates:::sampleAlphaPoissonCpp(n, a1, b1, a2, b2, a1, b1, .5, .5, 1)
 #' 
 #' 
 #' 
@@ -46,8 +47,8 @@
 #' # note that the significance depends on all parameters
 #' a1 <- 3; b1 <- 7
 #' a2 <- 90; b2 <- 10
-#' plot_beta(c(a1, a2), c(b1, b2))
-#' f <- function(x) bayes_binom_test(x, n, a1, b1, a2, b2)$reject
+#' plotBeta(c(a1, a2), c(b1, b2))
+#' f <- function(x) bayesBinomTest(x, n, a1, b1, a2, b2)$reject
 #' f(c(11, 8))
 #' mean( apply(data, 1, f) )
 #' sampleAlpha(n, a1, b1, a2, b2) 
@@ -132,11 +133,11 @@ sampleAlpha <- function(n, a1, b1, a2, b2,
 
   # check arguments
   stop2 <- function(x) stop(x, call. = FALSE)
-  if(missing(n)) stop2("the sample size n must be specified.  see ?sample_power.")
-  if(missing(a1)) stop2("the hyperparameter a1 must be specified.  see ?sample_power.")  
-  if(missing(b1)) stop2("the hyperparameter b1 must be specified.  see ?sample_power.")  
-  if(missing(a2)) stop2("the hyperparameter a2 must be specified.  see ?sample_power.")  
-  if(missing(b2)) stop2("the hyperparameter b2 must be specified.  see ?sample_power.")        
+  if(missing(n)) stop2("the sample size n must be specified.  see ?sampleAlpha.")
+  if(missing(a1)) stop2("the hyperparameter a1 must be specified.  see ?samplePower.")  
+  if(missing(b1)) stop2("the hyperparameter b1 must be specified.  see ?samplePower.")  
+  if(missing(a2)) stop2("the hyperparameter a2 must be specified.  see ?samplePower.")  
+  if(missing(b2)) stop2("the hyperparameter b2 must be specified.  see ?samplePower.")        
   family <- match.arg(family)
   stopifnot( pi0 >= 0 )
   stopifnot( pi1 >= 0 )  
@@ -327,9 +328,7 @@ sampleAlphaBinomial <- function(n, a1, b1, a2, b2,
 #' @examples
 #' \dontrun{
 #' 
-#' a <- ; b <- 
-#' sampleAlpha(t = 20, a, b)
-#' 
+#' 1+1
 #' 
 #' }
 sampleAlphaPoisson <- function(t, a1, b1, a2, b2, 
@@ -343,39 +342,22 @@ sampleAlphaPoisson <- function(t, a1, b1, a2, b2,
       sampleAlphaPoisson(x, a1, b1, a2, b2, a, b, pi0, pi1, c)
     }))
   }
-
-  # determine essential support of the poisson (/gamma mixture)
-  y1min <- qnbinom(.00001, size = a1, prob = b1/(t+b1))
-  y2min <- qnbinom(.00001, size = a2, prob = b2/(t+b2))   
-	
-  y1max <- qnbinom(.99999, size = a1, prob = b1/(t+b1))
-  y2max <- qnbinom(.99999, size = a2, prob = b2/(t+b2))  
   
-  # enumerate possible outcomes - this gets huge
-  df <- expand.grid(y1 = y1min:y1max, y2 = y2min:y2max)
-  
-  # test, TRUE when fail to reject
-  test <- function(y1, y2){
-    a*log(b) + lgamma(y1+y2+a) - lgamma(a) - (y1+y2+a)*log(2*t+b) + 
-      lgamma(a1) + lgamma(a2) + (y1+a1)*log(t+b1) + (y2+a2)*log(t+b2) - 
-      a1*log(b1) - a2*log(b2) - lgamma(y1+a1) - lgamma(y2+a2) > log(c * pi1/pi0)    
-  }
-  
-  # and put its probability here between the lines return(exp(... and ...)) 
-  value <- function(y1, y2){
-  	if(test(y1, y2)){  	
-      return(
-        exp( 
-          (y1+y2)*log(t) + a1*log(b1) + a2*log(b2) + lgamma(y1+a1) +
-          lgamma(y2+a2) - lfactorial(y1) - lfactorial(y2) - lgamma(a1) - lgamma(a2) -
-          (y1+a1)*log(t+b1) - (y2+a2)*log(t+b2) 
-        )
-      )
-    } else {
-      return(0)
-    }
-  }
-  
-  # sum the probabilities of each of the rejected y's and return
-  1 - sum(apply(df, 1, function(v) value(v[1], v[2])))
+  # Rcpp
+  sampleAlphaPoissonCpp(t, a1, b1, a2, b2, a, b, pi0, pi1, c)  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

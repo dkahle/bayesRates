@@ -55,10 +55,14 @@ plotPoisRule(3, 1, 1, 1, 1)
 plotPoisRule(4, 1, 1, 1, 1)
 plotPoisRule(5, 1, 1, 1, 1)
 plotPoisRule(10, 1, 1, 1, 1)
-plotPoisRule(5, 1, 1, 1, 1, sizeby = "null")
-plotPoisRule(5, 1, 1, 1, 1, sizeby = "alt") # uniform
+plotPoisRule(30, 1, 1, 1, 1)
+plotPoisRule(100, 1, 1, 1, 1)
 
-plotPoisRule(30, 3, 7, 7, 3)
+
+plotPoisRule(5, 1, 1, 1, 1, sizeby = "null")
+plotPoisRule(5, 1, 1, 1, 1, sizeby = "alt")
+
+plotPoisRule(30, 3, 7, 7, 3, geom = "point")
 plotPoisRule(100, 3, 7, 7, 3)
 
 plotPoisRule(30, 3, 7, 7, 3, sizeby = "null") + theme_bw()

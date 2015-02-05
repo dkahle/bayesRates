@@ -34,9 +34,7 @@ Compute the probability of type I error of the Poisson rate test for a given sam
 \examples{
 \dontrun{
 
-a <- ; b <-
-sampleAlpha(t = 20, a, b)
-
+1+1
 
 }
 }
