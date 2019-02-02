@@ -9,7 +9,7 @@ output:
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#", fig.height = 2,
+  comment = "#",
   fig.path = "tools/README-",
   dpi = 250
 )
@@ -51,7 +51,7 @@ Note that this procedure would not reject at the 10% level.
 `binom.test()` is similar, but uses the exact different procedure. __bayesRates__ offers another test of the same hypothesis with more of a Bayesian flavor, `bayesBinomTest()`.  In this function, the user begins by specifying probabilites ([beliefs](http://en.wikipedia.org/wiki/Bayesian_probability#Objective_and_subjective_Bayesian_probabilities)) on the null and alternative hypotheses, typically `1/2` and `1/2` from the [principle of insufficient reason](http://en.wikipedia.org/wiki/Principle_of_indifference#History_of_the_principle_of_indifference).  This is the default of `bayesBinomTest()`, but can be changed with the `pi0` and `pi1` arguments.
 
 The user then specifies probability distributions on the parameters under each of the hypotheses.  Under the null hypothesis, the proportions are the same quantity, and so only a single (univariate) distribution need be specified.  Since [beta distributions](http://en.wikipedia.org/wiki/Beta_distribution) are well suited to this task, they are assumed in __bayesRates__, so the user only needs to specify the parameters of the beta distribution.  This is facilitated with the `plotBeta()` function, which takes in the two parameters and simply plots the ensuing beta distribution. Assuming the two coins flip heads at the same rate, it is reasonable to assume that that rate is around 50%, so that a Beta(10, 10) might be reasonable:
-```{r plotBeta}
+```{r plotBeta, fig.height = 3}
 plotBeta(10, 10)
 ```
 
@@ -78,7 +78,7 @@ Note that the conclusion is to reject the null hypothesis of equality of rates. 
 Under these assumptions, once the hyperparameters `a1`, `b1`, `a2`, and `b2` are set, the decision rule itself is entirely characterized.  (If the user should want the hyperparameters on the null hypothesis and the first probability of the alternative, he can specify them with `a` and `b` in addition to the arguments above).  
 
 Apart from seeing the decision rule's action on one dataset (that's what `bayesBinomTest()` does), we can visualize the entire decision rule using the `plotBinomRule()` function:
-```{r plotBinomRule, fig.height = 6, fig.width = 6}
+```{r plotBinomRule, fig.height = 4}
 plotBinomRule(n = 50, a1 = 10, b1 = 10, a2 = 2, b2 = 1)
 ```
 
