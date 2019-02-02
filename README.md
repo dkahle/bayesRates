@@ -272,6 +272,11 @@ interest.
 Installation
 ------------
 
--   From Github: `devtools::install_github("dkahle/bayesRates")`
+-   From Github:
+
+``` r
+if (!requireNamespace("devtools")) install.packages("devtools")
+devtools::install_github("dkahle/bayesRates")
+```
 
 <!-- * From CRAN: `install.packages("bayesRates")` -->
