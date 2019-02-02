@@ -18,3 +18,5 @@ Imports:
     plyr,
     Rcpp
 License: GPL-2
+RoxygenNote: 6.1.0
+Encoding: UTF-8
