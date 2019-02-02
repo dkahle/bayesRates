@@ -9,7 +9,7 @@ output:
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#",
+  comment = "#", fig.height = 3,
   fig.path = "tools/README-",
   dpi = 250
 )
